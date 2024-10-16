@@ -18,7 +18,7 @@ The Personal To-Do List Application is a command-line tool for managing tasks. U
 ### Installation Instructions
 1. **Clone the repository**:
    ```bash
-   git clone <https://github.com/rohith460/voc-major>
+   git clone <https://github.com/rohith460/voc>
 2. run the voc.py code
 
 # ADDING A TASK:

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        #task-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        label, input, button {
+            margin-bottom: 10px;
+        }
+        input, button {
+            padding: 8px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task-item {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>To-Do List</h1>
+
+    <form id="task-form">
+        <label for="task">Task</label>
+        <input type="text" id="task" required placeholder="Enter a task">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <h2>Tasks</h2>
+    <ul id="task-list"></ul>
+
+    <script>
+        const taskForm = document.getElementById('task-form');
+        const taskList = document.getElementById('task-list');
+
+        taskForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get the task input value
+            const taskInput = document.getElementById('task').value;
+            if (taskInput === '') return;
+
+            // Create a new task item
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.innerHTML = `<span>${taskInput}</span>
+                            <button onclick="markComplete(this)">Complete</button>
+                            <button onclick="deleteTask(this)">Delete</button>`;
+
+            // Add the task to the task list
+            taskList.appendChild(li);
+
+            // Clear the input field
+            document.getElementById('task').value = '';
+        });
+
+        function markComplete(button) {
+            const taskItem = button.parentElement;
+            taskItem.classList.toggle('completed');
+        }
+
+        function deleteTask(button) {
+            const taskItem = button.parentElement;
+            taskList.removeChild(taskItem);
+        }
+    </script>
+    
+</body>
+</html>
